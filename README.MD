@@ -1,31 +1,78 @@
-## Bar Chart
+## Line Chart
 
 > The line-chart visualization plugin
 
-[![Build Status](https://travis-ci.org/reming0227/line-chartjs.svg?branch=master)](https://travis-ci.org/reming0227/line-chartjs) [![Version](https://img.shields.io/badge/npm-1.0.0-blue.svg)](https://www.npmjs.com/package/line-chartjs)
+[![Build Status](https://travis-ci.org/reming0227/line-chartjs.svg?branch=master)](https://travis-ci.org/reming0227/line-chartjs) [![Version](https://img.shields.io/badge/npm-0.0.1-blue.svg)](https://www.npmjs.com/package/line-chartjs)
 
 ## 📦 Installation
 
-### CDN Import
-```html
-<script type="text/javascript" src="https://unpkg.com/line-chartjs/lib/index.min.js"></script>
-```
-
-### Module Import
 ```javascript
 npm install line-chartjs --save
 yarn add line-chartjs
 ```
 
 ## 🔨 Usage
+
+### CDN Import
+
 ```html
-<canvas id="canvas"></canvas>
+<script type="text/javascript" src="https://unpkg.com/line-chartjs/lib/index.min.js"></script>
 ```
+
+### Module Import
+
+```javascript
+import LineChart from 'line-chartjs';
+```
+
+### HTML
+
+```html
+<canvas id="canvas" width="600" height="400"></canvas>
+```
+
+### Javascript
+
 ```javascript
 var canvas = document.querySelector('#canvas');
 var Option = {
-  data: [50, 270, 100],
-  labels: ['Mon', 'Tues', 'Wed']
+  labels: ['Mon', 'Tues', 'Wed'],
+  series: [{
+    style: {
+      default: 'blue',
+      active: 'red'
+    },
+    data: [
+     100,
+     230,
+     170]
+  },
+  {
+    style: {
+      default: 'yellow',
+      active: 'red'
+    },
+    data: [
+     -170,
+     170,
+     100]
+  },
+  {
+    data: [
+     170,
+     20,
+     -80]
+  },
+  {
+    style: {
+      default: 'green',
+      active: 'red'
+    },
+    data: [
+     170,
+     170,
+     -230]
+  }]
 };
 new LineChart(canvas, Option);
 ```
@@ -34,13 +81,20 @@ new LineChart(canvas, Option);
 
 ```javascript
 {
-  data: [], // data of y-axis
-  labels: [], // data of x-axis
-  margin: { // margin-space
+  series: [{ // config multiple line
+    style: {
+      default: 'rgba(16, 142, 233, 0.6)',
+      select: 'rgb(16, 142, 233)'
+    },
+    data: []
+  },
+  ...],
+  labels: [], // set data of x-axis
+  margin: {
     top: 30,
     bottom: 30
   },
-  xAxis: { // config of x-axis
+  xAxis: { // config style of x-axis
     font: {
       size: 13,
       family: 'Arial',
@@ -56,7 +110,7 @@ new LineChart(canvas, Option);
       length: 6
     }
   },
-  yAxis: { // config of y-axis
+  yAxis: { // config style of y-axis
     font: {
       size: 13,
       family: 'Arial',
@@ -72,30 +126,29 @@ new LineChart(canvas, Option);
       length: 6
     }
   },
-  guideLine: { // config of guide-line
+  guideLine: { // config style of guide-line
     style: '#ccc',
     width: 1
   },
-  bar: { // config of bar
+  defaultBar: { // set default style of bar
     style: {
       default: 'rgba(16, 142, 233, 0.6)',
-      select: 'rgb(16, 142, 233)',
+      select: 'rgb(16, 142, 233)'
     }
   },
-  duration: 500, // duration of animation
-  tooltip: { // config of tooltip
+  duration: 500, // set duration of animation
+  tooltip: { // config tooltip
     title: '',
     style: 'rgba(0, 0, 0, 0.6)',
     height: 50,
     radius: 4,
-    mark: { // config of mark
-      radius: 5,
-      style: 'rgb(16, 142, 233)'
+    mark: {
+      radius: 5
     },
     font: {
       size: 14,
       family: 'Arial',
-      style: 'rgba(0, 0, 0, 0.6)'
+      style: 'rgb(255, 255, 255)'
     }
   }
 }
